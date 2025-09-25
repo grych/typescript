@@ -27,17 +27,18 @@ defmodule Typescript.Core do
     {:ok, watcher_pid} = FileSystem.start_link(args)
     FileSystem.subscribe(watcher_pid)
     # Logger.info(inspect(args))
+    # Logger.info("Started.")
     {:ok, %{watcher_pid: watcher_pid}}
   end
 
   def handle_info(
-        {:file_event, watcher_pid, {path, _events}},
+        {:file_event, watcher_pid, {path, events}},
         %{watcher_pid: watcher_pid} = state
       ) do
     is_ts = String.downcase(path) |> String.ends_with?(".ts")
 
     if is_ts do
-      # Logger.debug("#{inspect(path)} #{inspect(events)}")
+      Logger.debug("#{inspect(path)} #{inspect(events)}")
       Typescript.Compiler.compile(path)
     end
 

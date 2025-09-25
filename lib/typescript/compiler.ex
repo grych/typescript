@@ -2,8 +2,6 @@ defmodule Typescript.Compiler do
   require Logger
 
   def compile_mac(path) do
-    # path = "#{path}"
-    # Logger.debug(path)
     case System.find_executable("tsc") do
       nil ->
         Logger.error("[TypeScript] tsc cannot be found, please check the
@@ -17,17 +15,18 @@ defmodule Typescript.Compiler do
           {debug, _} -> Logger.error(debug)
         end
     end
-
-    # Logger.error(inspect(File.cwd()))
-    # Logger.debug(inspect(cmd))
   end
 
   def compile_linux(_path) do
-    Logger.error("[TypeScript] Sorry, linux system is not suppoted yet. Please write to me: grych@tg.pl")
+    Logger.error(
+      "[TypeScript] Sorry, linux system is not suppoted yet. Please write to me: grych@tg.pl"
+    )
   end
 
   def compile_windows(_path) do
-    Logger.error("[TypeScript] Sorry, windows system is not suppoted yet. Please write to me: grych@tg.pl")
+    Logger.error(
+      "[TypeScript] Sorry, windows system is not suppoted yet. Please write to me: grych@tg.pl"
+    )
   end
 
   def compile(path) do

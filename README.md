@@ -1,6 +1,6 @@
-# Typescript
+# TypeScript
 
-## TODO
+## TypeScript
 
 The library to compile the Typescript to Javascript.
 
@@ -12,7 +12,7 @@ by adding `typescript` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:typescript, "~> 0.2.0"}
+    {:typescript, "~> 0.2.1"}
   ]
 end
 ```
