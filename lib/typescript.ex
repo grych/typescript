@@ -4,12 +4,13 @@ defmodule Typescript do
   """
   require Logger
   use Application
+  @dirs Application.compile_env(:typescript, :dirs, ["ts"])
 
   def start(_type, _args) do
     children = [
       # Starts a worker by calling: Typescript.start_link(arg)
       # {Typescript, arg}
-      {Typescript.Core, dirs: ["ts"]}
+      {Typescript.Core, dirs: @dirs}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

@@ -19,7 +19,7 @@ defmodule Typescript.Core do
           {:error, error}
 
         {:error, error} ->
-          Logger.error("[Typescript] Can't create the '#{init_dir}', reason #{inspect(error)}")
+          Logger.error("[TypeScript] Can't create the '#{init_dir}', reason #{inspect(error)}")
           {:error, error}
       end
     end
