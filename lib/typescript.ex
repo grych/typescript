@@ -3,8 +3,6 @@ defmodule Typescript do
   Documentation for `Typescript`.
   """
   require Logger
-  # use Agent
-
   use Application
 
   def start(_type, _args) do
@@ -19,5 +17,4 @@ defmodule Typescript do
     opts = [strategy: :one_for_one, name: Typescript.Supervisor]
     Supervisor.start_link(children, opts)
   end
-
 end

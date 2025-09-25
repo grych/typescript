@@ -5,10 +5,13 @@ defmodule Typescript.Compiler do
     # path = "#{path}"
     # Logger.debug(path)
     case System.find_executable("tsc") do
-      nil -> Logger.error("tsc cannot be found, please check the
+      nil ->
+        Logger.error("tsc cannot be found, please check the
         https://www.typescriptlang.org/download/")
+
       tsc_path ->
         cmd = System.cmd(tsc_path, [path])
+
         case cmd do
           {_, 0} -> Logger.debug("OK")
           {debug, _} -> Logger.error(debug)
@@ -28,11 +31,11 @@ defmodule Typescript.Compiler do
   end
 
   def compile(path) do
-    case :os.type do
+    case :os.type() do
       {:unix, :darwin} -> compile_mac(path)
       {:unix, :linux} -> compile_linux(path)
       {:win32, :nt} -> compile_windows(path)
-      {_, _} -> Logger.error("undefined OS #{inspect(:os.type)}")
+      {_, _} -> Logger.error("undefined OS #{inspect(:os.type())}")
     end
   end
 end
