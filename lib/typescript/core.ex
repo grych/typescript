@@ -1,4 +1,6 @@
 defmodule Typescript.Core do
+  @moduledoc false
+
   use GenServer
   require Logger
 

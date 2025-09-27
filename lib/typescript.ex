@@ -1,12 +1,26 @@
 defmodule Typescript do
   @moduledoc """
-  Documentation for `Typescript`.
+  The library to compile the TypeScript to JavaScript. This library contains a File System, to watch
+  the changes to the *.ts file in a directory called "ts/", and compile it to the JavaScript after
+  any change inside it.
+
+  ## Configuration
+
+  You can use the **config.exs** like this:
+
+  ```elixir
+  config :typescript,
+    dirs: ["ts"]
+  ```
+
   """
   require Logger
   use Application
   @dirs Application.compile_env(:typescript, :dirs, ["ts"])
   # @backend Application.compile_env(:typescript, :backend, :fs_mac)
 
+  @spec start(any(), any()) :: {:error, any()} | {:ok, pid()}
+  @doc false
   def start(_type, _args) do
     backend =
       case :os.type() do
@@ -37,8 +51,6 @@ defmodule Typescript do
       {Typescript.Core, dirs: @dirs, backend: backend}
     ]
 
-    # See https://hexdocs.pm/elixir/Supervisor.html
-    # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Typescript.Supervisor]
     Supervisor.start_link(children, opts)
   end

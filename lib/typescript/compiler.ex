@@ -1,6 +1,10 @@
 defmodule Typescript.Compiler do
+  @moduledoc """
+  The compiler for TypeScript.
+  """
   require Logger
 
+  @doc false
   def compile_mac(path) do
     case System.find_executable("tsc") do
       nil ->
@@ -17,18 +21,28 @@ defmodule Typescript.Compiler do
     end
   end
 
+  @doc false
   def compile_linux(_path) do
     Logger.error(
       "[TypeScript] Sorry, linux system is not suppoted yet. Please write to me: grych@tg.pl"
     )
   end
 
+  @doc false
   def compile_windows(_path) do
     Logger.error(
       "[TypeScript] Sorry, windows system is not suppoted yet. Please write to me: grych@tg.pl"
     )
   end
 
+  @doc """
+  Compile the `path` to the JavaScript with `path.js` extension.
+
+      iex> Typescript.Compiler.compile("ts/first.ts")
+
+      10:47:18.460 [debug] [TypeScript] OK
+      :ok
+  """
   def compile(path) do
     case :os.type() do
       {:unix, :darwin} -> compile_mac(path)

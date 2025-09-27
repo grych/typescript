@@ -2,8 +2,9 @@ defmodule Typescript.Compiler.CompilerTest do
   use ExUnit.Case
   require Logger
   import ExUnit.CaptureLog
+  doctest Typescript.Compiler
 
-  test "compile on a same OS enviroment" do
+  test "compile on a same OS enviroment as it is on your machine" do
     file_ts = Path.join(["ts", "first.ts"])
     file_js = Path.join(["ts", "first.js"])
 
