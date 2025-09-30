@@ -14,7 +14,7 @@ The package can be installed by adding `typescript` to your list of dependencies
 ```elixir
 def deps do
   [
-    {:typescript, "~> 0.2.2"}
+    {:typescript, "~> 0.2.3", only: [:dev, :test]}
   ]
 end
 ```
